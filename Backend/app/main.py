@@ -32,7 +32,7 @@ app.add_middleware(
         "http://localhost:5173",
     ],
     # Allow the deployed Vercel frontend while keeping local development working.
-    allow_origin_regex=r"https://.*\\.vercel\\.app",
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
