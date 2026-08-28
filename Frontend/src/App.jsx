@@ -58,7 +58,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/triage",
+        "https://patienttriage-ai.onrender.com/triage",
         {
           age: Number(patient.age),
           heart_rate: Number(patient.heart_rate),
@@ -97,7 +97,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/decision",
+        "https://patienttriage-ai.onrender.com/decision",
         {
           assessment_id: result.assessment_id,
           decision: "ACCEPT",
@@ -147,7 +147,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/decision",
+        "https://patienttriage-ai.onrender.com/decision",
         {
           assessment_id: result.assessment_id,
           decision: "MODIFY",
@@ -194,7 +194,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/decision",
+        "https://patienttriage-ai.onrender.com/decision",
         {
           assessment_id: result.assessment_id,
           decision: "OVERRIDE",
