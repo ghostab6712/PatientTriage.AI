@@ -1,6 +1,13 @@
 # PatientTriage.AI
 
-An AI-assisted emergency triage prototype that combines machine-learning predictions with a rule-based clinical risk engine and a human-in-the-loop review workflow.
+🚀 **[Live Demo](https://patient-triage-ai-vert.vercel.app)**
+## Links
+
+- 🌐 **Live Demo:** https://patient-triage-ai-vert.vercel.app
+- ⚙️ **Backend API:** https://patienttriage-ai.onrender.com
+- 📚 **API Docs:** https://patienttriage-ai.onrender.com/docs
+
+AI-assisted emergency triage system combining machine learning, rule-based risk assessment, confidence scoring, and human clinical review.
 
 > **Prototype / educational project:** This system uses synthetic patient data and is not clinically validated. It must not be used for real-world medical decision-making.
 
