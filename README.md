@@ -11,6 +11,20 @@
 </p>
 
 ---
+## What It Does
+
+PatientTriage.AI combines **Machine Learning + a deterministic risk engine + confidence scoring + human review** to support emergency triage decisions.
+
+| Capability | Description |
+|---|---|
+| AI Triage | ML-based classification across 4 risk levels |
+| Risk Engine | 0–100 deterministic clinical risk score |
+| Safety | Confidence-based human review escalation |
+| Explainability | Human-readable factors behind each assessment |
+| Clinical Review | Accept, Modify, or Override AI recommendations |
+| Reassessment | Updated assessments with preserved history |
+| Surge Simulation | 3× emergency-department workload simulation |
+
 
 ## Overview
 
