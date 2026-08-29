@@ -29,6 +29,16 @@ The system combines:
 > **Prototype / Educational Project:** This system uses synthetic patient data and is not clinically validated. It must not be used for real-world medical decision-making.
 
 ---
+## Screenshots
+
+### Patient Intake
+![Patient Intake](screenshots/patient-intake.png)
+
+### Triage Dashboard
+![Triage Dashboard](screenshots/dashboard.png)
+
+### AI Assessment & Explainability
+![AI Assessment](screenshots/assessment.png)
 
 ## Key Features
 
