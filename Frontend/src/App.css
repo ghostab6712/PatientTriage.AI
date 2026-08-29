@@ -2452,3 +2452,2105 @@
   }
 }
 
+/* =========================================================
+   PATIENT.AI — FINAL UI POLISH
+   Keep existing functionality unchanged.
+   ========================================================= */
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-soft: #e2e8f0;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --page-bg: #f1f5f9;
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.07);
+}
+
+/* Page */
+body {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.035), transparent 32%),
+    var(--page-bg);
+  color: var(--text-main);
+}
+
+/* Main dashboard */
+.dashboard {
+  max-width: 1280px;
+  padding: 36px 32px 60px;
+}
+
+/* Header */
+.dashboard-header {
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.dashboard-header h2 {
+  font-size: 30px;
+  font-weight: 750;
+  letter-spacing: -0.7px;
+  color: var(--text-main);
+}
+
+.dashboard-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Header action */
+.dashboard-header button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 9px;
+  background: var(--primary);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.18);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.dashboard-header button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.22);
+}
+
+/* Statistics */
+.dashboard .dashboard-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  margin: 0 0 26px !important;
+}
+
+.dashboard .dashboard-stat {
+  position: relative;
+  min-height: 112px !important;
+  padding: 20px 22px !important;
+  overflow: hidden;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 14px !important;
+  background: var(--surface) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.dashboard .dashboard-stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--primary);
+  opacity: 0.8;
+}
+
+.dashboard .dashboard-stat:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1 !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.dashboard .dashboard-stat span {
+  margin-bottom: 12px !important;
+  color: var(--text-muted) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.08em;
+}
+
+.dashboard .dashboard-stat strong {
+  color: var(--text-main) !important;
+  font-size: 30px !important;
+  font-weight: 750;
+}
+
+/* Generic cards */
+.dashboard .card,
+.dashboard .queue-card,
+.dashboard .assessment-card {
+  border: 1px solid var(--border-soft);
+  border-radius: 15px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.dashboard .card:hover,
+.dashboard .queue-card:hover,
+.dashboard .assessment-card:hover {
+  border-color: #d7e0eb;
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard .card h3,
+.dashboard .queue-card h3 {
+  color: var(--text-main);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Section labels */
+.dashboard .eyebrow {
+  color: #64748b !important;
+  font-size: 10px !important;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+/* Filter buttons */
+.filter-buttons {
+  gap: 8px;
+}
+
+.filter-buttons button {
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: #fff;
+  color: #475569;
+  transition: all 0.15s ease;
+}
+
+.filter-buttons button:hover {
+  border-color: #93c5fd;
+  background: #f8fbff;
+  color: var(--primary);
+}
+
+.filter-buttons button.active-filter {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.18);
+}
+
+/* Table */
+.table-wrapper {
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table-wrapper table {
+  min-width: 900px;
+}
+
+.table-wrapper th {
+  padding: 13px 14px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.table-wrapper td {
+  padding: 15px 14px;
+  color: #475569;
+  font-size: 13px;
+}
+
+.table-wrapper tbody tr {
+  transition: background 0.15s ease;
+}
+
+.table-wrapper tbody tr:hover {
+  background: #f8fbff;
+}
+
+.table-wrapper td strong {
+  color: var(--text-main);
+}
+
+/* Risk badges */
+.dashboard .risk-badge {
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em;
+}
+
+/* Priority badges */
+.dashboard .priority-badge {
+  min-width: 40px !important;
+  padding: 5px 9px !important;
+  border-radius: 7px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+}
+
+/* Patient information */
+.assessment-grid {
+  gap: 12px;
+}
+
+.info-box {
+  background: #fbfdff;
+  border-color: var(--border-soft);
+  border-radius: 11px;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.info-box:hover {
+  background: #f8fbff;
+  border-color: #cbd5e1;
+}
+
+.info-box span {
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+.info-box strong {
+  color: var(--text-main);
+}
+
+/* AI assessment */
+.risk-main,
+.confidence-main {
+  background: linear-gradient(180deg, #f8fbff 0%, #f8fafc 100%);
+  border-color: var(--border-soft);
+  border-radius: 13px;
+}
+
+.risk-main strong,
+.confidence-main strong {
+  font-weight: 800;
+}
+
+/* Recommendation */
+.recommendation-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.recommendation-box h3 {
+  color: var(--text-main);
+}
+
+.recommendation-box p {
+  color: #475569;
+  line-height: 1.65;
+}
+
+/* Assessment history */
+.history-content {
+  border-radius: 12px;
+  border-color: var(--border-soft);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.025);
+}
+
+.latest-assessment .history-content {
+  border-color: #93c5fd;
+  background: #f8fbff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.07);
+}
+
+.timeline-decision-card {
+  border-left-width: 3px;
+  background: #f8fafc;
+  border-radius: 9px;
+}
+
+/* Data quality */
+.data-quality-card {
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.data-quality-field {
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.data-quality-field:hover {
+  transform: translateX(2px);
+  border-color: #cbd5e1;
+}
+
+/* Surge simulation */
+.surge-card {
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.surge-toggle {
+  border-radius: 9px;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.15);
+  transition: all 0.15s ease;
+}
+
+.surge-toggle:hover {
+  transform: translateY(-1px);
+}
+
+/* Nurse decision */
+.nurse-decision {
+  border-top-color: var(--border-soft);
+}
+
+.decision-buttons button,
+.accept-button,
+.modify-button,
+.override-button {
+  border-radius: 9px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.decision-buttons button:hover {
+  transform: translateY(-1px);
+}
+
+/* Reassessment modal */
+.modal-overlay {
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(4px);
+}
+
+.reassessment-modal {
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow:
+    0 25px 70px rgba(15, 23, 42, 0.24),
+    0 5px 20px rgba(15, 23, 42, 0.08);
+}
+
+.modal-header > button {
+  transition: all 0.15s ease;
+}
+
+.modal-header > button:hover {
+  background: #e2e8f0;
+  transform: rotate(3deg);
+}
+
+/* Form fields */
+.form-group input,
+.form-group select,
+input,
+select,
+textarea {
+  border-color: #d7dee8;
+  border-radius: 9px;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #b8c4d3;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Buttons */
+button {
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Empty / error */
+.empty-state {
+  border: 1px dashed #cbd5e1;
+  background: #f8fafc;
+}
+
+.error-box {
+  border: 1px solid #fecaca;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .dashboard {
+    padding: 30px 22px 50px;
+  }
+
+  .dashboard .dashboard-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboard {
+    padding: 24px 16px 40px;
+  }
+
+  .dashboard-header {
+    gap: 16px;
+  }
+
+  .dashboard-header h2 {
+    font-size: 25px;
+  }
+
+  .dashboard .dashboard-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  .dashboard .card,
+  .dashboard .queue-card,
+  .dashboard .assessment-card {
+    padding: 19px;
+  }
+}
+/* =========================================================
+   PATIENTTRIAGE.AI — DARK CLINICAL UI
+   Final visual theme
+   ========================================================= */
+
+:root {
+  --dark-bg: #080d16;
+  --dark-bg-2: #0d1420;
+  --dark-surface: #111a28;
+  --dark-surface-2: #162132;
+  --dark-surface-3: #1b293b;
+
+  --dark-border: #263449;
+  --dark-border-light: #304158;
+
+  --dark-text: #f1f5f9;
+  --dark-text-soft: #cbd5e1;
+  --dark-text-muted: #8290a5;
+
+  --blue: #3b82f6;
+  --blue-bright: #60a5fa;
+  --blue-dark: #2563eb;
+
+  --green: #22c55e;
+  --red: #ef4444;
+  --orange: #f97316;
+  --yellow: #eab308;
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(59, 130, 246, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(14, 165, 233, 0.045),
+      transparent 25%
+    ),
+    var(--dark-bg) !important;
+
+  color: var(--dark-text) !important;
+}
+
+/* =========================================================
+   APP HEADER
+   ========================================================= */
+
+.header {
+  height: 74px !important;
+
+  background: rgba(10, 16, 27, 0.94) !important;
+
+  border-bottom: 1px solid var(--dark-border) !important;
+
+  padding: 0 5% !important;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.22);
+
+  backdrop-filter: blur(14px);
+}
+
+.header h1 {
+  color: #f8fafc !important;
+
+  font-size: 24px !important;
+  font-weight: 800 !important;
+
+  letter-spacing: -0.6px;
+}
+
+.header h1 span {
+  color: var(--blue-bright) !important;
+}
+
+.header p {
+  color: var(--dark-text-muted) !important;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+
+  background: #0c1421;
+
+  border: 1px solid var(--dark-border);
+
+  border-radius: 10px;
+}
+
+.navigation button {
+  background: transparent !important;
+
+  color: #8fa0b7 !important;
+
+  padding: 9px 15px !important;
+
+  border-radius: 7px !important;
+
+  font-size: 12px !important;
+  font-weight: 700 !important;
+
+  border: 1px solid transparent !important;
+}
+
+.navigation button:hover {
+  color: #e2e8f0 !important;
+
+  background: #182438 !important;
+
+  border-color: #263b56 !important;
+}
+
+/* =========================================================
+   SYSTEM STATUS
+   ========================================================= */
+
+.status {
+  color: #9aa9bc !important;
+
+  font-size: 12px !important;
+  font-weight: 600;
+}
+
+.status span {
+  width: 8px !important;
+  height: 8px !important;
+
+  background: #22c55e !important;
+
+  box-shadow:
+    0 0 0 3px rgba(34, 197, 94, 0.12),
+    0 0 12px rgba(34, 197, 94, 0.35);
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+  max-width: 1180px !important;
+
+  padding: 48px 30px !important;
+}
+
+/* =========================================================
+   PAGE TITLES
+   ========================================================= */
+
+.page-title h2,
+.dashboard-header h2 {
+  color: #f8fafc !important;
+
+  font-weight: 800 !important;
+
+  letter-spacing: -0.8px;
+}
+
+.page-title p,
+.dashboard-header p {
+  color: var(--dark-text-muted) !important;
+}
+
+.eyebrow {
+  color: #6f87a5 !important;
+
+  font-size: 10px !important;
+
+  font-weight: 800 !important;
+
+  letter-spacing: 0.12em !important;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card,
+.queue-card,
+.assessment-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22, 33, 50, 0.98),
+      rgba(15, 24, 37, 0.98)
+    ) !important;
+
+  border: 1px solid var(--dark-border) !important;
+
+  border-radius: 14px !important;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.018) !important;
+
+  color: var(--dark-text) !important;
+}
+
+.card:hover,
+.queue-card:hover,
+.assessment-card:hover {
+  border-color: #344761 !important;
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025) !important;
+}
+
+.card h3,
+.queue-card h3,
+.assessment-card h2 {
+  color: #f1f5f9 !important;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.field label,
+.form-group label {
+  color: #cbd5e1 !important;
+
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+.field label span {
+  color: #64748b !important;
+}
+
+input,
+select,
+textarea,
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: #0c1522 !important;
+
+  color: #e2e8f0 !important;
+
+  border: 1px solid #2a3a50 !important;
+
+  border-radius: 9px !important;
+
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  color-scheme: dark;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #526176 !important;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #3a4d66 !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--blue) !important;
+
+  background: #0d1827 !important;
+
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.13),
+    0 6px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+select option {
+  background: #111a28;
+  color: #e2e8f0;
+}
+
+/* =========================================================
+   PRIMARY BUTTONS
+   ========================================================= */
+
+button {
+  background: linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+  ) !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid rgba(96, 165, 250, 0.2) !important;
+
+  border-radius: 9px !important;
+
+  box-shadow:
+    0 5px 15px rgba(37, 99, 235, 0.2);
+
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    filter 0.16s ease;
+}
+
+button:hover:not(:disabled) {
+  filter: brightness(1.08);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(37, 99, 235, 0.27);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard {
+  max-width: 1180px !important;
+
+  padding: 34px 0 60px !important;
+}
+
+.dashboard-header {
+  margin-bottom: 26px !important;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid var(--dark-border);
+}
+
+/* =========================================================
+   DASHBOARD STAT CARDS
+   ========================================================= */
+
+.dashboard-stats {
+  gap: 14px !important;
+}
+
+.dashboard-stat {
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151f2f,
+      #101927
+    ) !important;
+
+  border: 1px solid var(--dark-border) !important;
+
+  border-radius: 13px !important;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+.dashboard-stat::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    rgba(59, 130, 246, 0)
+  );
+
+  opacity: 0.8;
+}
+
+.dashboard-stat span {
+  color: #74859d !important;
+}
+
+.dashboard-stat strong {
+  color: #f8fafc !important;
+
+  font-size: 30px !important;
+}
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
+.filter-buttons {
+  gap: 7px !important;
+}
+
+.filter-buttons button {
+  background: #111b2a !important;
+
+  color: #93a4ba !important;
+
+  border: 1px solid #29394f !important;
+
+  box-shadow: none !important;
+}
+
+.filter-buttons button:hover {
+  background: #18263a !important;
+
+  color: #dbeafe !important;
+
+  border-color: #3b82f6 !important;
+}
+
+.filter-buttons button.active-filter {
+  background: #2563eb !important;
+
+  color: #ffffff !important;
+
+  border-color: #3b82f6 !important;
+
+  box-shadow:
+    0 5px 14px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-wrapper {
+  border: 1px solid var(--dark-border);
+
+  border-radius: 11px;
+
+  overflow: hidden;
+}
+
+.table-wrapper table {
+  background: #101927;
+}
+
+.table-wrapper th {
+  background: #0c1420 !important;
+
+  color: #71839b !important;
+
+  border-bottom: 1px solid var(--dark-border) !important;
+}
+
+.table-wrapper td {
+  background: #101927 !important;
+
+  color: #aebdd0 !important;
+
+  border-bottom: 1px solid #1e2b3e !important;
+}
+
+.table-wrapper tbody tr:hover td {
+  background: #162337 !important;
+}
+
+.table-wrapper td strong {
+  color: #e5edf7 !important;
+}
+
+/* =========================================================
+   RISK BADGES
+   ========================================================= */
+
+.risk-badge.critical {
+  background: rgba(239, 68, 68, 0.13) !important;
+
+  color: #f87171 !important;
+
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.risk-badge.high {
+  background: rgba(249, 115, 22, 0.13) !important;
+
+  color: #fb923c !important;
+
+  border: 1px solid rgba(249, 115, 22, 0.25);
+}
+
+.risk-badge.moderate {
+  background: rgba(234, 179, 8, 0.12) !important;
+
+  color: #facc15 !important;
+
+  border: 1px solid rgba(234, 179, 8, 0.23);
+}
+
+.risk-badge.low {
+  background: rgba(34, 197, 94, 0.11) !important;
+
+  color: #4ade80 !important;
+
+  border: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.status-badge.success {
+  background: rgba(34, 197, 94, 0.12) !important;
+
+  color: #4ade80 !important;
+
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.status-badge.warning {
+  background: rgba(249, 115, 22, 0.12) !important;
+
+  color: #fb923c !important;
+
+  border: 1px solid rgba(249, 115, 22, 0.22);
+}
+
+.review-status {
+  background: rgba(249, 115, 22, 0.12) !important;
+
+  color: #fb923c !important;
+}
+
+.active-status {
+  background: rgba(34, 197, 94, 0.1) !important;
+
+  color: #4ade80 !important;
+}
+
+.reassessment-active {
+  background: rgba(59, 130, 246, 0.12) !important;
+
+  color: #60a5fa !important;
+}
+
+.reassessment-due {
+  background: rgba(239, 68, 68, 0.12) !important;
+
+  color: #f87171 !important;
+}
+
+/* =========================================================
+   ASSESSMENT
+   ========================================================= */
+
+.assessment-card {
+  background:
+    linear-gradient(
+      145deg,
+      #141f30,
+      #0f1826
+    ) !important;
+}
+
+.assessment-header {
+  border-bottom-color: var(--dark-border) !important;
+}
+
+.risk-main,
+.confidence-main {
+  background:
+    linear-gradient(
+      145deg,
+      #192638,
+      #121d2c
+    ) !important;
+
+  border: 1px solid #2b3d54 !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.risk-main span,
+.confidence-main span {
+  color: #73869e !important;
+}
+
+.risk-main strong {
+  color: #f87171 !important;
+}
+
+.confidence-main strong {
+  color: #60a5fa !important;
+}
+
+/* =========================================================
+   INFO BOXES
+   ========================================================= */
+
+.info-box {
+  background: #0f1927 !important;
+
+  border: 1px solid #27384e !important;
+
+  border-radius: 10px !important;
+}
+
+.info-box:hover {
+  background: #142236 !important;
+
+  border-color: #354a63 !important;
+}
+
+.info-box span {
+  color: #70839b !important;
+}
+
+.info-box strong {
+  color: #e2e8f0 !important;
+}
+
+/* =========================================================
+   RECOMMENDATION
+   ========================================================= */
+
+.recommendation-box {
+  background:
+    linear-gradient(
+      145deg,
+      #152235,
+      #111c2b
+    ) !important;
+
+  border: 1px solid #2a3e57 !important;
+}
+
+.recommendation-box h3 {
+  color: #f1f5f9 !important;
+}
+
+.recommendation-box p {
+  color: #9eacc0 !important;
+}
+
+.escalation {
+  background: rgba(249, 115, 22, 0.1) !important;
+
+  color: #fb923c !important;
+
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+/* =========================================================
+   EXPLAINABILITY
+   ========================================================= */
+
+.assessment-reasons {
+  background: #0e1826 !important;
+
+  border: 1px solid #27384d !important;
+
+  border-radius: 12px;
+}
+
+.assessment-reason-item {
+  background: #131f30 !important;
+
+  border: 1px solid #26374c !important;
+
+  color: #cbd5e1 !important;
+}
+
+.assessment-reason-icon {
+  background: rgba(34, 197, 94, 0.12) !important;
+
+  color: #4ade80 !important;
+}
+
+.assessment-reasons-note {
+  color: #65768d !important;
+}
+
+/* =========================================================
+   CONFIDENCE / SAFETY
+   ========================================================= */
+
+.confidence-safety {
+  background: #0e1825 !important;
+
+  border-color: #293a50 !important;
+}
+
+.confidence-safety-text {
+  color: #8393a8 !important;
+}
+
+.confidence-safety-ok {
+  background: rgba(34, 197, 94, 0.07) !important;
+
+  border-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+.confidence-safety-caution {
+  background: rgba(234, 179, 8, 0.07) !important;
+
+  border-color: rgba(234, 179, 8, 0.2) !important;
+}
+
+.confidence-safety-review {
+  background: rgba(239, 68, 68, 0.07) !important;
+
+  border-color: rgba(239, 68, 68, 0.22) !important;
+}
+
+/* =========================================================
+   DATA QUALITY
+   ========================================================= */
+
+.data-quality-card {
+  background:
+    linear-gradient(
+      145deg,
+      #131f2e,
+      #0f1927
+    ) !important;
+}
+
+.data-quality-description {
+  color: #8291a5 !important;
+}
+
+.data-quality-score {
+  background: #0d1724 !important;
+
+  border: 1px solid #293b51 !important;
+
+  border-radius: 10px;
+}
+
+.data-quality-score strong {
+  color: #60a5fa !important;
+}
+
+.data-quality-score span {
+  color: #71839a !important;
+}
+
+.data-quality-score small {
+  color: #53647a !important;
+}
+
+.data-quality-field {
+  background: #101b29 !important;
+
+  border: 1px solid #26374b !important;
+
+  color: #cbd5e1 !important;
+}
+
+.data-quality-field-name {
+  color: #cbd5e1 !important;
+}
+
+.data-quality-field-status {
+  color: #75879e !important;
+}
+
+.data-quality-summary {
+  background: #0d1724 !important;
+
+  border-color: #293b51 !important;
+}
+
+.data-quality-summary strong {
+  color: #dbe5f0 !important;
+}
+
+.data-quality-summary span {
+  color: #718198 !important;
+}
+
+/* =========================================================
+   SURGE SIMULATION
+   ========================================================= */
+
+.surge-card {
+  background:
+    linear-gradient(
+      145deg,
+      #141f2f,
+      #101927
+    ) !important;
+
+  border-color: #293b51 !important;
+}
+
+.surge-header h3 {
+  color: #edf3fa !important;
+}
+
+.surge-description {
+  color: #7f90a6 !important;
+}
+
+.surge-metric {
+  background: #0e1825 !important;
+
+  border-color: #28394e !important;
+}
+
+.surge-metric span {
+  color: #71839a !important;
+}
+
+.surge-metric strong {
+  color: #e2e8f0 !important;
+}
+
+.surge-metric small {
+  color: #64758b !important;
+}
+
+.surge-safety-row {
+  background: #0d1826 !important;
+
+  border-color: #29405c !important;
+}
+
+.surge-safety-row strong {
+  color: #93c5fd !important;
+}
+
+.surge-safety-row div span {
+  color: #70839a !important;
+}
+
+/* =========================================================
+   CLINICAL DECISION WORKFLOW
+   ========================================================= */
+
+.decision-workflow-card {
+  background:
+    linear-gradient(
+      145deg,
+      #141f2f,
+      #101927
+    ) !important;
+}
+
+.decision-workflow-card > p:not(.eyebrow) {
+  color: #8291a5 !important;
+}
+
+.decision-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.decision-actions button {
+  min-height: 42px;
+}
+
+.decision-actions button:nth-child(1) {
+  background: linear-gradient(
+    135deg,
+    #16a34a,
+    #15803d
+  ) !important;
+}
+
+.decision-actions button:nth-child(2) {
+  background: linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+  ) !important;
+}
+
+.decision-actions button:nth-child(3) {
+  background: linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+  ) !important;
+}
+
+/* =========================================================
+   DECISION FORM
+   ========================================================= */
+
+.decision-form-card {
+  background: #121d2b !important;
+}
+
+.decision-form-card label {
+  color: #cbd5e1 !important;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.error-box {
+  background: rgba(239, 68, 68, 0.08) !important;
+
+  color: #fca5a5 !important;
+
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+
+  border-radius: 10px !important;
+}
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+.modal-overlay {
+  background: rgba(2, 6, 12, 0.82) !important;
+
+  backdrop-filter: blur(8px);
+}
+
+.reassessment-modal {
+  background:
+    linear-gradient(
+      145deg,
+      #162234,
+      #0f1927
+    ) !important;
+
+  border: 1px solid #304158 !important;
+
+  color: #e2e8f0 !important;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.dashboard > h2 {
+  color: #dbeafe !important;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+* {
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #33445b
+    #0a111c;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0a111c;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #33445b;
+
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #465c77;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+  .header {
+    height: auto !important;
+
+    min-height: 74px;
+
+    padding: 14px 18px !important;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+  }
+
+  .navigation {
+    order: 3;
+
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .status {
+    margin-left: auto;
+  }
+
+  .container {
+    padding: 30px 16px !important;
+  }
+
+  .dashboard {
+    padding: 24px 0 45px !important;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .assessment-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .header h1 {
+    font-size: 21px !important;
+  }
+
+  .header p {
+    font-size: 11px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  .assessment-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .risk-section {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card,
+  .queue-card,
+  .assessment-card {
+    padding: 19px !important;
+  }
+}
+/* =========================================================
+   DARK UI OVERRIDE
+   PatientTriage.AI
+   ========================================================= */
+
+:root {
+  --dark-bg: #070d16;
+  --dark-surface: #0d1624;
+  --dark-surface-2: #111d2d;
+  --dark-surface-3: #152235;
+  --dark-border: #22344d;
+  --dark-border-light: #29415f;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a9c4;
+  --text-muted: #6f86a5;
+
+  --blue: #2f72ff;
+  --blue-hover: #4280ff;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard {
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.dashboard-header h2 {
+  color: #f8fafc !important;
+}
+
+.dashboard-header p {
+  color: var(--text-secondary) !important;
+}
+
+.eyebrow {
+  color: #7295bd !important;
+}
+
+
+/* =========================================================
+   STAT CARDS
+   ========================================================= */
+
+.dashboard .dashboard-stat {
+  background: linear-gradient(
+    145deg,
+    #101b2b 0%,
+    #0c1522 100%
+  ) !important;
+
+  border: 1px solid var(--dark-border) !important;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025) !important;
+
+  color: var(--text-primary) !important;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.dashboard .dashboard-stat:hover {
+  transform: translateY(-2px);
+  border-color: #31527a !important;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(47, 114, 255, 0.06) !important;
+}
+
+.dashboard .dashboard-stat span {
+  color: #7892b3 !important;
+}
+
+.dashboard .dashboard-stat strong {
+  color: #f8fafc !important;
+}
+
+
+/* =========================================================
+   ALL MAIN CARDS
+   ========================================================= */
+
+.dashboard .card,
+.dashboard .queue-card,
+.dashboard .assessment-card,
+.dashboard .surge-card {
+  background: linear-gradient(
+    145deg,
+    #101b2b 0%,
+    #0d1725 100%
+  ) !important;
+
+  border: 1px solid var(--dark-border) !important;
+
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+
+  color: var(--text-primary);
+}
+
+.dashboard .card h3,
+.dashboard .queue-card h3,
+.dashboard .assessment-card h2,
+.dashboard .assessment-card h3 {
+  color: #f8fafc !important;
+}
+
+
+/* =========================================================
+   SURGE CARD
+   ========================================================= */
+
+.dashboard .surge-card {
+  background:
+    linear-gradient(
+      135deg,
+      #101c2d 0%,
+      #0c1624 60%,
+      #0a1320 100%
+    ) !important;
+
+  border-color: #263d59 !important;
+}
+
+.surge-description {
+  color: #8da5c3 !important;
+}
+
+
+/* =========================================================
+   FILTER BUTTONS
+   ========================================================= */
+
+.dashboard .filter-buttons button {
+  background: #0c1624 !important;
+  border: 1px solid #263b56 !important;
+  color: #a9bad0 !important;
+}
+
+.dashboard .filter-buttons button:hover {
+  background: #132238 !important;
+  border-color: #3c72b8 !important;
+  color: #dbeafe !important;
+}
+
+.dashboard .filter-buttons button.active-filter {
+  background: #2563eb !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+
+  box-shadow:
+    0 0 18px rgba(37, 99, 235, 0.25);
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.dashboard .table-wrapper th {
+  background: #0a1421 !important;
+  color: #7893b4 !important;
+  border-bottom: 1px solid #263b56 !important;
+}
+
+.dashboard .table-wrapper td {
+  background: #0d1725 !important;
+  color: #a9bad0 !important;
+  border-bottom: 1px solid #1d3047 !important;
+}
+
+.dashboard .table-wrapper td strong {
+  color: #f1f5f9 !important;
+}
+
+.dashboard .table-wrapper tbody tr:hover {
+  background: #132238 !important;
+}
+
+.dashboard .table-wrapper tbody tr:hover td {
+  background: #132238 !important;
+}
+
+
+/* =========================================================
+   PATIENT INFORMATION
+   ========================================================= */
+
+.dashboard .info-box {
+  background: #0c1726 !important;
+  border: 1px solid #263b56 !important;
+}
+
+.dashboard .info-box span {
+  color: #7892b3 !important;
+}
+
+.dashboard .info-box strong {
+  color: #f1f5f9 !important;
+}
+
+
+/* =========================================================
+   AI ASSESSMENT
+   ========================================================= */
+
+.dashboard .risk-main,
+.dashboard .confidence-main {
+  background: #0c1726 !important;
+  border: 1px solid #263b56 !important;
+}
+
+.dashboard .risk-main span,
+.dashboard .confidence-main span {
+  color: #7892b3 !important;
+}
+
+
+/* =========================================================
+   ASSESSMENT HISTORY
+   ========================================================= */
+
+.dashboard .assessment-history::before {
+  background: #2b425e !important;
+}
+
+.dashboard .history-marker {
+  background: #0d1725 !important;
+  color: #7189a8 !important;
+}
+
+.dashboard .latest-assessment .history-marker {
+  color: #3b82f6 !important;
+}
+
+.dashboard .history-content {
+  background: #0d1725 !important;
+  border: 1px solid #263b56 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard .latest-assessment .history-content {
+  background: #101e30 !important;
+  border-color: #315d8d !important;
+}
+
+.dashboard .history-date {
+  color: #7892b3 !important;
+}
+
+.dashboard .history-details span,
+.dashboard .history-pathway span {
+  color: #7892b3 !important;
+}
+
+.dashboard .history-details strong,
+.dashboard .history-pathway strong {
+  color: #f1f5f9 !important;
+}
+
+
+/* =========================================================
+   DECISION HISTORY
+   ========================================================= */
+
+.dashboard .decision-history-item {
+  background: #0c1726 !important;
+  border: 1px solid #263b56 !important;
+}
+
+.dashboard .decision-history-item span {
+  color: #7892b3 !important;
+}
+
+.dashboard .decision-history-item strong {
+  color: #f1f5f9 !important;
+}
+
+.dashboard .decision-history-item p {
+  color: #8198b5 !important;
+}
+
+.dashboard .decision-reason {
+  border-top: 1px solid #263b56 !important;
+}
+
+
+/* =========================================================
+   TIMELINE DECISION
+   ========================================================= */
+
+.dashboard .timeline-decisions {
+  border-top: 1px solid #263b56 !important;
+}
+
+.dashboard .timeline-decision-card {
+  background: #0b1624 !important;
+  border-left: 3px solid #3b82f6 !important;
+}
+
+.dashboard .decision-row span {
+  color: #8198b5 !important;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.dashboard .empty-state {
+  background: #0a1421 !important;
+  border: 1px solid #1d3047 !important;
+  color: #7189a8 !important;
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.dashboard .error-box {
+  background: rgba(127, 29, 29, 0.25) !important;
+  border: 1px solid rgba(248, 113, 113, 0.25) !important;
+  color: #fca5a5 !important;
+}
+
+
+/* =========================================================
+   REASSESSMENT MODAL
+   ========================================================= */
+
+.modal-overlay {
+  background: rgba(2, 6, 13, 0.82) !important;
+  backdrop-filter: blur(6px);
+}
+
+.reassessment-modal {
+  background: #0d1725 !important;
+  border: 1px solid #2a405d !important;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.65) !important;
+}
+
+.modal-header h2 {
+  color: #f8fafc !important;
+}
+
+.modal-header > button {
+  background: #172437 !important;
+  color: #9fb3cb !important;
+}
+
+.modal-header > button:hover {
+  background: #21344e !important;
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   FORM INPUTS
+   ========================================================= */
+
+.form-group label {
+  color: #9bb0c9 !important;
+}
+
+.form-group input,
+.form-group select {
+  background: #091321 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #2a405d !important;
+}
+
+.form-group input::placeholder {
+  color: #607792 !important;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #3b82f6 !important;
+
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.12) !important;
+}
+
+
+/* =========================================================
+   REASSESSMENT RESULT
+   ========================================================= */
+
+.reassessment-result {
+  background: #0b1624 !important;
+  border: 1px solid #263b56 !important;
+}
+
+.result-status strong {
+  color: #f8fafc !important;
+}
+
+.reassessment-result > p {
+  color: #8198b5 !important;
+}
+
+.result-grid > div {
+  background: #101c2c !important;
+  border: 1px solid #263b56 !important;
+}
+
+.result-grid span {
+  color: #7892b3 !important;
+}
+
+.result-grid strong {
+  color: #f1f5f9 !important;
+}
+
+
+/* =========================================================
+   MODAL BUTTONS
+   ========================================================= */
+
+.modal-actions button {
+  background: #101c2c !important;
+  border: 1px solid #2a405d !important;
+  color: #b6c6d9 !important;
+}
+
+.modal-actions button:hover {
+  background: #17263a !important;
+}
+
+.modal-actions button:last-child {
+  background: #2563eb !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   REASSESS BUTTON
+   ========================================================= */
+
+.table-wrapper td button {
+  background: #101f34 !important;
+  border-color: #3274dc !important;
+  color: #72a7ff !important;
+}
+
+.table-wrapper td button:hover {
+  background: #2563eb !important;
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.review-status {
+  background: rgba(234, 88, 12, 0.15) !important;
+  color: #fb923c !important;
+  border: 1px solid rgba(234, 88, 12, 0.2);
+}
+
+.active-status {
+  background: rgba(34, 197, 94, 0.12) !important;
+  color: #4ade80 !important;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.reassessment-active {
+  background: rgba(59, 130, 246, 0.13) !important;
+  color: #60a5fa !important;
+}
+
+.reassessment-due {
+  background: rgba(239, 68, 68, 0.14) !important;
+  color: #f87171 !important;
+}
+
+
+/* =========================================================
+   PATIENT ROW ALERTS
+   ========================================================= */
+
+.patient-row-due {
+  background: rgba(127, 29, 29, 0.15) !important;
+}
+
+.patient-row-warning {
+  background: rgba(120, 53, 15, 0.14) !important;
+}
+
+
+/* =========================================================
+   LATEST LABEL
+   ========================================================= */
+
+.latest-label {
+  background: rgba(59, 130, 246, 0.15) !important;
+  color: #60a5fa !important;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.dashboard ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dashboard ::-webkit-scrollbar-track {
+  background: #080f19;
+}
+
+.dashboard ::-webkit-scrollbar-thumb {
+  background: #263b56;
+  border-radius: 10px;
+}
+
+.dashboard ::-webkit-scrollbar-thumb:hover {
+  background: #365577;
+}
