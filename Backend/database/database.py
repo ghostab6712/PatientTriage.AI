@@ -74,13 +74,6 @@ def initialize_database():
     # =========================
     # MIGRATE EXISTING DATABASE
     # =========================
-    #
-    # Your database already exists, so CREATE TABLE
-    # will NOT add the new columns to the existing
-    # assessments table.
-    #
-    # Therefore we add them if they don't exist.
-    # =========================
 
     cursor.execute("PRAGMA table_info(assessments)")
 
@@ -132,6 +125,119 @@ def initialize_database():
             REFERENCES assessments(id)
         )
     """)
+
+    # =========================================================
+    # SEED 20 DEMO PATIENTS IF DATABASE IS EMPTY
+    # =========================================================
+
+    cursor.execute("SELECT COUNT(*) FROM patients")
+    patient_count = cursor.fetchone()[0]
+
+    if patient_count == 0:
+
+        demo_patients = [
+
+            # -------------------------
+            # LOW RISK
+            # -------------------------
+
+            (22, 72, 118, 76, 99, 36.7, 16, 1,
+             "Alert", "Mild headache"),
+
+            (31, 78, 122, 80, 98, 36.8, 16, 2,
+             "Alert", "Minor abdominal discomfort"),
+
+            (45, 82, 128, 82, 98, 37.0, 17, 2,
+             "Alert", "Back pain"),
+
+            (27, 88, 120, 78, 99, 36.9, 17, 3,
+             "Alert", "Ankle injury"),
+
+            (54, 86, 130, 84, 97, 37.1, 18, 3,
+             "Alert", "Persistent cough"),
+
+            # -------------------------
+            # MODERATE RISK
+            # -------------------------
+
+            (39, 96, 135, 86, 96, 37.5, 19, 4,
+             "Alert", "Fever and weakness"),
+
+            (62, 101, 138, 88, 95, 37.8, 21, 4,
+             "Alert", "Dizziness and fatigue"),
+
+            (48, 104, 142, 90, 95, 37.6, 22, 5,
+             "Alert", "Shortness of breath"),
+
+            (71, 98, 145, 88, 94, 37.4, 22, 5,
+             "Alert", "Weakness and nausea"),
+
+            (16, 105, 125, 78, 96, 38.5, 22, 5,
+             "Alert", "Fever and abdominal pain"),
+
+            # -------------------------
+            # AMBIGUOUS / HIGHER RISK
+            # -------------------------
+
+            (46, 102, 136, 84, 96, 37.4, 20, 5,
+             "Alert", "Chest discomfort and dizziness"),
+
+            (68, 110, 132, 82, 93, 38.1, 24, 6,
+             "Confused", "Confusion and weakness"),
+
+            # Pediatric case
+            (3, 128, 102, 64, 94, 38.5, 30, 5,
+             "Alert", "Fever and breathing difficulty"),
+
+            # Geriatric case
+            (78, 108, 118, 70, 92, 37.9, 25, 6,
+             "Confused", "Shortness of breath and confusion"),
+
+            (57, 116, 128, 76, 91, 38.2, 26, 7,
+             "Alert", "Chest pain and sweating"),
+
+            # -------------------------
+            # CRITICAL / HIGH RISK
+            # -------------------------
+
+            (64, 125, 92, 58, 88, 38.7, 30, 8,
+             "Confused", "Severe breathing difficulty"),
+
+            (42, 132, 86, 54, 87, 39.1, 32, 9,
+             "Drowsy", "Severe chest pain"),
+
+            (81, 128, 88, 52, 86, 38.9, 31, 8,
+             "Confused", "Sudden weakness and breathing difficulty"),
+
+            # Pediatric high-risk case
+            (9, 142, 84, 50, 89, 39.2, 36, 8,
+             "Drowsy", "Severe fever and respiratory distress"),
+
+            (35, 138, 82, 48, 85, 39.0, 34, 10,
+             "Unresponsive", "Unresponsive patient")
+        ]
+
+        cursor.executemany("""
+            INSERT INTO patients (
+                age,
+                heart_rate,
+                systolic_bp,
+                diastolic_bp,
+                spo2,
+                temperature,
+                respiratory_rate,
+                pain_score,
+                consciousness,
+                chief_complaint
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, demo_patients)
+
+        print("20 demo patients seeded successfully.")
+
+    # =========================
+    # SAVE DATABASE CHANGES
+    # =========================
 
     connection.commit()
     connection.close()
@@ -210,7 +316,6 @@ def save_assessment(
                 confidence,
                 pathway,
                 reassessment_minutes,
-
                 age,
                 heart_rate,
                 systolic_bp,
@@ -233,7 +338,6 @@ def save_assessment(
             confidence,
             pathway,
             reassessment_minutes,
-
             patient.age,
             patient.heart_rate,
             patient.systolic_bp,
