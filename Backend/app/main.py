@@ -760,32 +760,3 @@ def get_assessment_history(patient_id: int):
         "patient_id": patient_id,
         "history": history
     }
- # =========================================================
-# TEMPORARY DEMO RESET
-# REMOVE THIS ENDPOINT AFTER USING IT ONCE
-# =========================================================
-
-@app.delete("/admin/reset-demo")
-def reset_demo_database():
-
-    connection = get_connection()
-    cursor = connection.cursor()
-
-    # Delete dependent records first
-    cursor.execute("DELETE FROM nurse_decisions")
-    cursor.execute("DELETE FROM assessments")
-    cursor.execute("DELETE FROM patients")
-
-    # Reset auto-increment counters
-    cursor.execute(
-        "DELETE FROM sqlite_sequence "
-        "WHERE name IN ('patients', 'assessments', 'nurse_decisions')"
-    )
-
-    connection.commit()
-    connection.close()
-
-    return {
-        "status": "SUCCESS",
-        "message": "Demo database reset successfully."
-    }
